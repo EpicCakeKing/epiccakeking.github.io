@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Avatarizer 2</title>
+    <style media="screen">
+      #canvas{
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <p>This is an updated version of Avatarizer with better scaling and a JPEG option.<br><br>
+      Instructions:<br>
+      1. Set the scaling method<br>
+      2. Upload your image<br>
+      3. Click save (PNG is recommended if you want transparency or higher quality, JPEG is better if PNG produces too large of a file size)<br><br>
+      Note: This is just intended as a quick and simple way to create an avatar, use a proper image editing program such as GIMP for better results.</p>
+    <label><input type="radio" name="scalemethod" value="fit" id="scalefit" checked="true">fit</label>
+    <label><input type="radio" name="scalemethod" value="cover">cover</label><br>
+    <input type="file" oninput="reader.readAsDataURL(this.files[0]);"><br>
+    <canvas id="canvas" width="100" height="100"></canvas><br>
+    <a id='download' href='' download="avatar.png">Save (PNG)</a><br>
+    <a id='downloadjpg' href='' download="avatar.jpg">Save (JPEG)</a>
+    <script type="text/javascript">
+      canvas=document.getElementById('canvas');
+      ctx=canvas.getContext('2d');
+      var img = new Image();
+      img.onload = function () {
+        if (((img.width>200||img.height>200)&&document.getElementById("scalefit").checked)||img.width>200&&img.height>200){
+          canvas.width=img.width/2;
+          canvas.height=img.height/2;
+          ctx.drawImage(img, 0, 0,canvas.width,canvas.height);
+          img.setAttribute('src',canvas.toDataURL('image/png'));
+        }else{
+          canvas.width=100;
+          canvas.height=100;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          if ((img.width>img.height)==document.getElementById("scalefit").checked){
+            ctx.drawImage(img, 0, (100-img.height*100/img.width)/2,100,img.height*100/img.width);
+          }else{
+            ctx.drawImage(img, (100-img.width*100/img.height)/2, 0,img.width*100/img.height,100);
+          }
+          document.getElementById("download").href=canvas.toDataURL('image/png');
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, 100, 100);
+          if ((img.width>img.height)==document.getElementById("scalefit").checked){
+            ctx.drawImage(img, 0, (100-img.height*100/img.width)/2,100,img.height*100/img.width);
+          }else{
+            ctx.drawImage(img, (100-img.width*100/img.height)/2, 0,img.width*100/img.height,100);
+          }
+          document.getElementById("downloadjpg").href=canvas.toDataURL('image/jpeg',0.95);
+        }
+      };
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        img.setAttribute("src",e.target.result);
+      };
+    </script>
+  </body>
+</html>
