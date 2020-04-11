@@ -3,7 +3,8 @@ function sectiontoggle(section){
   section.classList.toggle('hidden');
 }
 function exportcss(){
-  var exportedcss='/*Automatically generated*/'
+  var exportedcss=`/*Automatically generated using CSS Manager.
+https://epiccakeking.github.io/css-manager/index.html*/`;
   for (var sect=0;sect<sections.children.length;sect++){
     exportedcss+='\n/*Section: '+sections.children[sect].querySelector('.secttitle').value+'*/\n';
     exportedcss+=sections.children[sect].querySelector('.sectcontent').value;
