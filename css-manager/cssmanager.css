@@ -1,0 +1,7 @@
+.section.hidden > textarea{
+  display: none;
+}
+.sectcontent{
+  width: 100%;
+  resize: vertical;
+}
