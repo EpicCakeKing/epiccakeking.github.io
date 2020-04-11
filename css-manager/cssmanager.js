@@ -15,7 +15,6 @@ function loadcss(){
   loadedcss=document.getElementById('csstransfer').value.split('\n/*Section: ');
   loadedcss.shift()
   sections.innerHTML='';
-  console.log(loadedcss)
   for (var sect=0;sect<loadedcss.length;sect++){
     templatetemp=template.cloneNode(true);
     var splitat="*/\n"

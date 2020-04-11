@@ -9,7 +9,7 @@
     <div id='sectiontemplate' style='display: none;'>
       <div class='section hidden'>
         <input type="button" name="" value="Up" onclick='this.parentNode.parentNode.insertBefore(this.parentNode,this.parentNode.previousElementSibling);'></input>
-          <input type="button" name="" value="Down" onclick='this.parentNode.parentNode.insertBefore(this.parentNode.previousElementSibling,this.parentNode);'></input>
+          <input type="button" name="" value="Down" onclick='this.parentNode.parentNode.insertBefore(this.parentNode.nextElementSibling,this.parentNode);'></input>
         <input type="button" name="" value="Hide" onclick="sectiontoggle(this.parentNode)"></input>
         <input class='secttitle' type="text" name="" value="Section"></input>
         <input type="button" name="" value="Remove" onclick="window.confirm('Remove?')&&this.parentNode.remove()"></input><br>
