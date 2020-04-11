@@ -8,11 +8,13 @@
   <body>
     <div id='sectiontemplate' style='display: none;'>
       <div class='section hidden'>
-        <input type="button" name="" value="Up" onclick='this.parentNode.parentNode.insertBefore(this.parentNode,this.parentNode.previousElementSibling);'></input>
-          <input type="button" name="" value="Down" onclick='this.parentNode.parentNode.insertBefore(this.parentNode.nextElementSibling,this.parentNode);'></input>
-        <input type="button" name="" value="Hide" onclick="sectiontoggle(this.parentNode)"></input>
-        <input class='secttitle' type="text" name="" value="Section"></input>
-        <input type="button" name="" value="Remove" onclick="window.confirm('Remove?')&&this.parentNode.remove()"></input><br>
+        <div class='flex'>
+          <input type="button" name="" value="Up" onclick='this.closest(".section").parentNode.insertBefore(this.closest(".section"),this.closest(".section").previousElementSibling);'></input>
+            <input type="button" name="" value="Down" onclick='this.closest(".section").parentNode.insertBefore(this.closest(".section").nextElementSibling,this.closest(".section"));'></input>
+          <input type="button" name="" value="Hide" onclick='sectiontoggle(this.closest(".section"))'></input>
+          <input class='secttitle' type="text" name="" value="Section"></input>
+          <input type="button" name="" value="Remove" onclick='window.confirm("Remove?")&&this.closest(".section").remove()'></input><br>
+        </div>
         <textarea class='sectcontent' name="name" rows="8"></textarea>
       </div>
     </div>

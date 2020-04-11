@@ -4,4 +4,36 @@
 .sectcontent{
   width: 100%;
   resize: vertical;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-top: 5px;
+}
+#csstransfer{
+  width: 100%;
+  resize: none;
+}
+.section{
+  margin: 5px;
+  padding: 5px;
+  background: white;
+  box-shadow: 0px 1px 5px black;
+}
+input[type='button']{
+  background: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 24px;
+}
+.secttitle{
+  border-radius: 5px;
+  border: 1px solid black;
+  height: 24px;
+  box-sizing: border-box;
+  flex: 1;
+}
+.flex{
+  display: flex !important;
+}
+.flex > *:not(:first-child){
+  margin-left: 5px;
 }
