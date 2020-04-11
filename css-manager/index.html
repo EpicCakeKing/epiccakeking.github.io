@@ -20,7 +20,7 @@
     The text input below is for importing/exporting.<br>
     There is currently no automatic conversion to "CSS Manager format", you will have to manually convert it.</p>
     <textarea id="csstransfer" rows="8" cols="80"></textarea><br>
-    <input type="button" onclick="loadcss()" value='load'>
+    <input type="button" onclick="window.confirm('Load CSS?')&&loadcss()" value='load'>
     <input type="button" onclick="exportcss()" value='export'>
     <input type="button" onclick="addsection()" value='add section'>
     <div id='sections'>
