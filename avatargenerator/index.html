@@ -2,7 +2,7 @@
 <p>Made by epiccakeking/happycupcake.<br>
 Inspired by the Art of Problem Solving default avatars.<br>
 Refresh to generate a new avatar.</p>
-<canvas id="canvas" width="100" height="100" style="border: 1px solid black;image-rendering: crisp-edges;transform: scale(3);margin: 100px;"></canvas>
+<canvas id="canvas" width="100" height="100" style="border: 1px solid black;transform: scale(3);margin: 100px;image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: optimize-contrast;image-rendering: pixelated;-ms-interpolation-mode: nearest-neighbor;"></canvas>
 <p id='colors'></p>
 <a id='download' href='' download="">save</a>
  <script>
@@ -130,5 +130,5 @@ downname+=letters[getRandomInt(letters.length)];
 };
 document.getElementById('download').download=downname+'.png';
 document.getElementById('download').href=canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
-</script> 
+</script>
 </body>
