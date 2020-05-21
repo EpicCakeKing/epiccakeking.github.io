@@ -1,0 +1,134 @@
+<body>
+<p>Made by epiccakeking/happycupcake.<br>
+Inspired by the Art of Problem Solving default avatars.<br>
+Refresh to generate a new avatar.</p>
+<canvas id="canvas" width="100" height="100" style="border: 1px solid black;image-rendering: crisp-edges;transform: scale(3);margin: 100px;"></canvas>
+<p id='colors'></p>
+<a id='download' href='' download="">save</a>
+ <script>
+ /*Setup*/
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+/*Generate cubes*/
+arr=[[0,0,0],[0,0,0],[0,0,0]]
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+for (var i = 0; i < 3; i++) {
+for (var k = 0; k < 3; k++) {
+arr[i][k]=Math.floor(Math.sqrt(getRandomInt(10)))
+}
+}
+for (var i = 0; i < 3; i++) {
+y=0
+for (var k = 0; k < 3; k++) {
+if (y>arr[i][k]){
+arr[i][k]=y
+}
+y=arr[i][k]
+}
+}
+for (var k = 0; k < 3; k++) {
+y=0
+for (var i = 0; i < 3; i++) {
+if (y>arr[2-i][k]){
+arr[2-i][k]=y
+}
+y=arr[2-i][k]
+}
+}
+//Generate colors
+colorchars=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
+cols=[];
+for (var k = 0; k < 3; k++) {
+col="#"
+for (var i = 0; i < 6; i++) {
+col+=colorchars[getRandomInt(colorchars.length)];
+}
+cols.push(col);
+}
+console.log(cols)
+//Drawing functions
+function drawleft(ctx,x,y,col){
+ctx.fillStyle = col;
+ctx.fillRect(x, y, 2, 14);
+ctx.fillRect(x+2, y+1, 2, 14);
+ctx.fillRect(x+4, y+2, 2, 14);
+ctx.fillRect(x+6, y+3, 2, 14);
+ctx.fillRect(x+8, y+4, 2, 14);
+ctx.fillRect(x+10, y+5, 1, 14);
+}
+function drawright(ctx,x,y,col){
+ctx.fillStyle = col;
+ctx.fillRect(x, y+5, 2, 14);
+ctx.fillRect(x+2, y+4, 2, 14);
+ctx.fillRect(x+4, y+3, 2, 14);
+ctx.fillRect(x+6, y+2, 2, 14);
+ctx.fillRect(x+8, y+1, 2, 14);
+ctx.fillRect(x+10, y, 1, 14);
+}
+function drawtop(ctx,x,y,col){
+ctx.fillStyle = col;
+ctx.fillRect(x+10, y, 2, 1);
+ctx.fillRect(x+8, y+1, 6, 1);
+ctx.fillRect(x+6, y+2, 10, 1);
+ctx.fillRect(x+4, y+3, 14, 1);
+ctx.fillRect(x+2, y+4, 18, 1);
+ctx.fillRect(x, y+5, 22, 1);
+ctx.fillRect(x+2, y+6, 18, 1);
+ctx.fillRect(x+4, y+7, 14, 1);
+ctx.fillRect(x+6, y+8, 10, 1);
+ctx.fillRect(x+8, y+9, 6, 1);
+ctx.fillRect(x+10, y+10, 2, 1);
+}
+//Left faces
+for (var i = 0; i < 3; i++) {
+v=0
+x=14+12*i;
+y=59+6*i
+for (var k = 0; k < 3; k++) {
+for (var z = 0; z < arr[i][k]-v; z++){
+drawleft(ctx,x,y,cols[0]);
+y+=-15
+}
+x+=12
+y+=-6
+v=arr[i][k]
+}
+for (var z = 0; z < 3-v; z++){
+drawleft(ctx,x,y,cols[0]);
+y+=-15
+}
+}
+
+//Right faces
+for (var k = 0; k < 3; k++) {
+v=0
+x=50+12*k;
+y=70-6*k;
+for (var i = 0; i < 3; i++) {
+for (var z = 0; z < arr[2-i][k]-v; z++){
+drawright(ctx,x,y,cols[1]);
+y+=-15
+}
+drawtop(ctx,x-12,y+9,cols[2]);
+x+=-12
+y+=-6
+v=arr[2-i][k]
+}
+for (var z = 0; z < 3-v; z++){
+drawright(ctx,x,y,cols[1]);
+y+=-15
+}
+}
+console.log(arr)
+document.getElementById('colors').innerHTML+=cols;
+downname=''
+letters='qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'
+for (var i = 0; i < 10; i++) {
+downname+=letters[getRandomInt(letters.length)];
+};
+document.getElementById('download').download=downname+'.png';
+document.getElementById('download').href=canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+</script> 
+</body>
